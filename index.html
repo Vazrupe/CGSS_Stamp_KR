@@ -81,6 +81,7 @@ $(document).ready(function() {
     }
 
     $.getJSON("info.json", function(stamp_data) {
+        console.log('test'); 
         console.log(stamp_data); 
         renderStamp(stamp_data);
     });
