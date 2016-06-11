@@ -105,12 +105,13 @@ var StampList = React.createClass({
   }
 });
 
-$.get("info.json", function(stampData) {
-    ReactDOM.render(
+var stampData = require('info.json');
+console.log(stampData);
+
+ReactDOM.render(
         <StampList stampData={stampData}></StampList>,
         document.getElementById('content')
     );
-})
 
         </script>
     </bodY>
