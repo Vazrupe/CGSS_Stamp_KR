@@ -1,41 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Cgss stamp kr by Vazrupe</title>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>협력 LIVE 스탬프</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+        <style>
+            @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+            * { font-size: 10px; font-family: 'Nanum Gothic', sans-serif; }
+            #title { font-size: 4rem; text-align: center; }
+            #stamps { font-size: 1rem; width: 110em; margin: 1rem auto; }
+            .stamp { float: left; width: 35em; height: 10em; font-size: 1em; text-align: center; border: 1px solid #ddd; margin: 0.5rem; padding: 0.2em; }
+            .stamp_img { float: left; width: 9em; height: 9em; font-size: 1em; margin: 0.5em; }
+            .text { width: 23em; height: 9em; float: right; font-size: 1em; margin: 0.5em; }
+            .text > * { display: block; }
+            .text * { font-size: 1.5em; line-height: 1.4em; margin: 0; }
+            .chara { font-weight: bold; font-size: 1.8em; line-height: 2.2em; }
+            small { color: #888; }
+            .text small { font-size: 0.8em; }
+            .chara small { font-size: 0.7em; }
+            .text .msg_korea { font-size: 1.3em; color: #666; }
+        </style>
+    </head>
+    <body>
+        <h1 id="title">- 협력 LIVE 스탬프 -</h1>
+        <div id="content"></div>
+        <script type="text/babel">
+// Option n datas
+var datas = [
+    { idx: 1, nameKr: "시마무라 우즈키", nameJp: "島村卯月", messageJp: "がんばります！", messageKr: "힘낼게요!" },
+    { idx: 2, nameKr: "시부야 린", nameJp: "渋谷凛", messageJp: "全力で行くよ", messageKr: "전력으로 가자" },
+    { idx: 3, nameKr: "혼다 미오", nameJp: "本田未央", messageJp: "ファイト！", messageKr: "화이팅!" },
+    { idx: 4, nameKr: "타다 리이나", nameJp: "多田李衣菜", messageJp: "GOOD LUCK!", messageKr: "GOOD LUCK!" },
+    { idx: 5, nameKr: "죠가사키 리카", nameJp: "城ヶ崎莉嘉", messageJp: "イエーイ！", messageKr: "이예-이!" },
+    { idx: 6, nameKr: "닛타 미나미", nameJp: "新田美波", messageJp: "はいっ！", messageKr: "네!" },
+    { idx: 7, nameKr: "죠가사키 미카", nameJp: "城ヶ崎美嘉", messageJp: "ヤバーイ", messageKr: "위험해-" },
+    { idx: 8, nameKr: "후타바 안즈 ", nameJp: "双葉杏", messageJp: "働きたくない", messageKr: "일하기 싫어" },
+    { idx: 9, nameKr: "미무라 카나코", nameJp: "三村かな子", messageJp: "ありがとう", messageKr: "고마워" },
+    { idx: 10, nameKr: "칸자키 란코", nameJp: "神崎蘭子", messageJp: "闇に飲まれよ！", messageKr: "어둠에 삼켜져라!" },
+    { idx: 11, nameKr: "아나스타샤", nameJp: "アナスタシア", messageJp: "スパシーバ<small>Спасибо</small>", messageKr: "고맙습니다" },
+    { idx: 12, nameKr: "마에카와 미쿠", nameJp: "前川みく", messageJp: "すやぁ…", messageKr: "스야아..." },
+    { idx: 13, nameKr: "모로보시 키라리", nameJp: "諸星きらり", messageJp: "むえ～", messageKr: "무에~" },
+    { idx: 14, nameKr: "오가타 치에리", nameJp: "緒方智絵里", messageJp: "楽しかったです", messageKr: "재밌었어요" },
+    { idx: 15, nameKr: "아카기 미리아", nameJp: "赤城みりあ", messageJp: "また遊ぼうね！", messageKr: "또 놀자!" },
+    { idx: 16, nameKr: "센카와 치히로", nameJp: "千川ちひろ", messageJp: "同僚申請　お願いします", messageKr: "동료신청 부탁드려요" },
+    { idx: 17, nameKr: "코시미즈 사치코", nameJp: "輿水幸子", messageJp: "ふふーん", messageKr: "흐흥-" },
+    { idx: 18, nameKr: "카와시마 미즈키", nameJp: "川島瑞樹", messageJp: "わかるわ。", messageKr: "나도 알아" },
+    { idx: 19, nameKr: "토토키 아이리", nameJp: "十時愛梨", messageJp: "自信あいまあっ♪", messageKr: "자신있어♪" },
+    { idx: 20, nameKr: "아베 나나", nameJp: "安部菜々", messageJp: "うーどっかーん！", messageKr: "우-콰쾅!" },
+    { idx: 21, nameKr: "사기사와 후미카", nameJp: "鷺沢文香", messageJp: "(汗)", messageKr: "(땀)" },
+    { idx: 22, nameKr: "히노 아카네", nameJp: "日野茜", messageJp: "フルコンボー！！", messageKr: "풀콤보-!!" },
+    { idx: 23, nameKr: "타카가키 카에데", nameJp: "高垣楓", messageJp: "強力<small>きょうりょく</small>な協力<small>きょうりょく</small>者", messageKr: "강력한 협력자" },
+    { idx: 24, nameKr: "타카모리 아이코", nameJp: "高森藍子", messageJp: "おめでとう", messageKr: "축하해" },
+    { idx: 25, nameKr: "하야사카 미레이", nameJp: "早坂美玲", messageJp: "よかったな", messageKr: "다행이네" },
+];
+var rowOnStampNums = 3;
+var height = Math.ceil(datas.length / rowOnStampNums) * 11.8;
+var stampsStyle = {
+    height: height+"em",
+};
+function createMarkup(html) { return {__html: html}; };
+// ReactJS Codes..
+var Stamp = React.createClass({
+  render: function() {
+    var msgJp = this.props.messageJp.toString().replace(/\^(.+?)\^/gi, "<small>$1</small>");
+    return (
+        <div className="stamp">
+            <img className="stamp_img" src={this.props.img}/>
+            <div className="text">
+                <p className="chara">{this.props.nameKr}<small>{this.props.nameJp}</small></p>
+                <p className="msg_japan" dangerouslySetInnerHTML={createMarkup(this.props.messageJp)}></p>
+                <p className="msg_korea">{this.props.messageKr}</p>
+            </div>
+        </div>
+    );
+  }
+});
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Cgss stamp kr</h1>
-        <p>협력 라이브 Stamp 목록</p>
-
-        <p class="view"><a href="https://github.com/Vazrupe/CGSS_Stamp_KR">View the Project on GitHub <small>Vazrupe/CGSS_Stamp_KR</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/Vazrupe/CGSS_Stamp_KR/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/Vazrupe/CGSS_Stamp_KR/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/Vazrupe/CGSS_Stamp_KR">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h2></h2>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/Vazrupe">Vazrupe</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
+var zeroFill = function(number, width) {
+    width -= number.toString().length;
+    if (width > 0) {
+        return new Array(width + (/\./.test( number ) ? 2 : 1)).join( '0' ) + number;
+    }
+    return number + ""; // always return a string
+}
+var stampList = datas.map(function (stamp, idx) {
+    var img_path = "img/stamp_"+zeroFill(stamp.idx, 6)+".png";
+    return (
+        <Stamp img={img_path} 
+            nameKr={stamp.nameKr} 
+            nameJp={stamp.nameJp} 
+            messageKr={stamp.messageKr} 
+            messageJp={stamp.messageJp}/>
+    );
+});
     
-  </body>
+ReactDOM.render(
+    <div id="stamps" style={stampsStyle}>{stampList}</div>,
+    document.getElementById('content')
+);
+        </script>
+    </bodY>
 </html>
