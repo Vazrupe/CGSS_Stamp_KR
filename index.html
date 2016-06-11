@@ -48,37 +48,6 @@ var Stamp = React.createClass({
   }
 });
 
-var zeroFill = function(number, width) {
-    width -= number.toString().length;
-    if (width > 0) {
-        return new Array(width + (/\./.test( number ) ? 2 : 1)).join( '0' ) + number;
-    }
-    return number + ""; // always return a string
-}
-
-var renderStamp = function(stampdata) {
-    var height = Math.ceil(stampdata.length / rowOnStampNums) * 11.8;
-    var stampsStyle = {
-        height: height+"em",
-    };
-    var stampList = stampdata.map(function (stamp, idx) {
-        var img_path = "img/stamp_"+zeroFill(stamp.idx, 6)+".png";
-        return (
-            <Stamp img={img_path} 
-                nameKr={stamp.nameKr} 
-                nameJp={stamp.nameJp} 
-                messageKr={stamp.messageKr} 
-                messageJp={stamp.messageJp}/>
-        );
-    });
-
-    ReactDOM.render(
-        <div id="stamps" style={stampsStyle}>{stampList}</div>,
-        document.getElementById('content')
-    );
-}
-
-        
 var StampList = React.createClass({
   render: function() {
     var stampdata = this.props.stampData;
@@ -86,6 +55,14 @@ var StampList = React.createClass({
     var stampsStyle = {
         height: height+"em",
     };
+    
+    var zeroFill = function(number, width) {
+        width -= number.toString().length;
+        if (width > 0) {
+            return new Array(width + (/\./.test( number ) ? 2 : 1)).join( '0' ) + number;
+        }
+        return number + ""; // always return a string
+    }
     var stampList = stampdata.map(function (stamp, idx) {
         var img_path = "img/stamp_"+zeroFill(stamp.idx, 6)+".png";
         return (
