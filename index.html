@@ -80,7 +80,7 @@ var renderStamp = function(stampdata) {
 }
 
 $(document).ready(function() {
-    $.getJSON("info.json", renderStamp(stamp_data));
+    $.getJSON("info.json", function(stamp_data) { renderStamp(stamp_data) });
 });
         </script>
     </bodY>
