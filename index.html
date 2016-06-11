@@ -29,57 +29,57 @@
         <h1 id="title">- 협력 LIVE 스탬프 -</h1>
         <div id="content"></div>
         <script type="text/babel">
-// Option
-var rowOnStampNums = 3;
+$(document).ready(function() {
+    // Option
+    var rowOnStampNums = 3;
 
-// ReactJS Codes..
-function createMarkup(html) { return {__html: html}; };
-var Stamp = React.createClass({
-  render: function() {
-    return (
-        <div className="stamp">
-            <img className="stamp_img" src={this.props.img}/>
-            <div className="text">
-                <p className="chara">{this.props.nameKr}<small>{this.props.nameJp}</small></p>
-                <p className="msg_japan" dangerouslySetInnerHTML={createMarkup(this.props.messageJp)}></p>
-                <p className="msg_korea">{this.props.messageKr}</p>
-            </div>
-        </div>
-    );
-  }
-});
-
-var zeroFill = function(number, width) {
-    width -= number.toString().length;
-    if (width > 0) {
-        return new Array(width + (/\./.test( number ) ? 2 : 1)).join( '0' ) + number;
-    }
-    return number + ""; // always return a string
-}
-
-var renderStamp = function(stampdata) {
-    var height = Math.ceil(stampdata.length / rowOnStampNums) * 11.8;
-    var stampsStyle = {
-        height: height+"em",
-    };
-    var stampList = stampdata.map(function (stamp, idx) {
-        var img_path = "img/stamp_"+zeroFill(stamp.idx, 6)+".png";
+    // ReactJS Codes..
+    function createMarkup(html) { return {__html: html}; };
+    var Stamp = React.createClass({
+      render: function() {
         return (
-            <Stamp img={img_path} 
-                nameKr={stamp.nameKr} 
-                nameJp={stamp.nameJp} 
-                messageKr={stamp.messageKr} 
-                messageJp={stamp.messageJp}/>
+            <div className="stamp">
+                <img className="stamp_img" src={this.props.img}/>
+                <div className="text">
+                    <p className="chara">{this.props.nameKr}<small>{this.props.nameJp}</small></p>
+                    <p className="msg_japan" dangerouslySetInnerHTML={createMarkup(this.props.messageJp)}></p>
+                    <p className="msg_korea">{this.props.messageKr}</p>
+                </div>
+            </div>
         );
+      }
     });
 
-    ReactDOM.render(
-        <div id="stamps" style={stampsStyle}>{stampList}</div>,
-        document.getElementById('content')
-    );
-}
+    var zeroFill = function(number, width) {
+        width -= number.toString().length;
+        if (width > 0) {
+            return new Array(width + (/\./.test( number ) ? 2 : 1)).join( '0' ) + number;
+        }
+        return number + ""; // always return a string
+    }
 
-$(document).ready(function() {
+    var renderStamp = function(stampdata) {
+        var height = Math.ceil(stampdata.length / rowOnStampNums) * 11.8;
+        var stampsStyle = {
+            height: height+"em",
+        };
+        var stampList = stampdata.map(function (stamp, idx) {
+            var img_path = "img/stamp_"+zeroFill(stamp.idx, 6)+".png";
+            return (
+                <Stamp img={img_path} 
+                    nameKr={stamp.nameKr} 
+                    nameJp={stamp.nameJp} 
+                    messageKr={stamp.messageKr} 
+                    messageJp={stamp.messageJp}/>
+            );
+        });
+
+        ReactDOM.render(
+            <div id="stamps" style={stampsStyle}>{stampList}</div>,
+            document.getElementById('content')
+        );
+    }
+
     $.getJSON("info.json", function(stamp_data) { console.log(stamp_data); renderStamp(stamp_data) });
 });
         </script>
