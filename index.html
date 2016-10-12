@@ -32,7 +32,7 @@
         </style>
     </head>
     <body>
-        <h1 id="title">- 협력 LIVE 스탬프 (160812) -</h1>
+        <h1 id="title">- 협력 LIVE 스탬프 (161013) -</h1>
         <div id="content"></div>
         <script type="text/babel">
 // Option
@@ -48,7 +48,7 @@ var Stamp = React.createClass({
             <div className="text">
                 <p className="chara">{this.props.nameKr}<small>{this.props.nameJp}</small></p>
                 <p className="msg_japan" dangerouslySetInnerHTML={createMarkup(this.props.messageJp)}></p>
-                <p className="msg_korea">{this.props.messageKr}</p>
+                <p className="msg_korea" dangerouslySetInnerHTML={createMarkup(this.props.messageKr)}></p>
             </div>
         </div>
     );
@@ -119,9 +119,9 @@ var stampData = [
     { idx: 28, nameKr: "야나기 키요라", nameJp: "柳清良", messageJp: "あらあら", messageKr: "어머어머" },
     { idx: 29, nameKr: "호시 쇼코", nameJp: "星輝子", messageJp: "ヒャッハー！！！", messageKr: "햣하-!!!" },
     { idx: 30, nameKr: "사토 신", nameJp: "佐藤心", messageJp: "あたっく！", messageKr: "어택!" },
-    { idx: 31, nameKr: "미즈노 미도리", nameJp: "水野翠", messageJp: "正射必中", messageKr: "정사필중 (바르게 쏘면, 반드시 맞는다)" },
+    { idx: 31, nameKr: "미즈노 미도리", nameJp: "水野翠", messageJp: "正射必中", messageKr: "정사필중<small>바르게 쏘면, 반드시 맞는다</small>" },
     { idx: 32, nameKr: "아사노 후카", nameJp: "浅野風香", messageJp: "(上手にできるかな…)", messageKr: "(잘 할 수 있을까…)" },
-    { idx: 33, nameKr: "코바야카와 사에", nameJp: "小早川紗枝", messageJp: "よろしおす (とてもいいですよ)", messageKr: "정말 좋아요" },
+    { idx: 33, nameKr: "코바야카와 사에", nameJp: "小早川紗枝", messageJp: "よろしおす<small>とてもいいですよ</small>", messageKr: "정말 좋아요" },
 ];
 
 ReactDOM.render(
