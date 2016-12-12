@@ -1,3 +1,3 @@
-[page](https://vazrupe.github.com/CGSS-StampKR)
+[page](https://vazrupe.github.io/CGSS-StampKR)
 
 last update 16. 12. 12
